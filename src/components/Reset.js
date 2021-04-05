@@ -22,7 +22,7 @@ const resetMailer =(e)=>{
         <div>
             <form >
                 <label>RESET PASSWORD</label><br />
-                <input type="email" placeholder="Enter Email" onChange={(e)=>{setEmail(e.target.value)}} /> <br />
+                <input type="email" placeholder="Enter Email" required onChange={(e)=>{setEmail(e.target.value)}} /> <br />
                 <button onClick={(e)=>resetMailer(e)}>Send</button>
                 
             </form>

@@ -75,8 +75,8 @@ setEdit(false);
                     <h5>Role: <span>{userDat.role == 0 ? "User" : null}</span></h5>
 
                     {edit ? <form onSubmit={(e) => handleEdit(e)}>
-                        <label>Name:</label> <input type='text' value={userDat.name} placeholder={userDat.name} onChange={(e) => setUserDat({ ...userDat, name: e.target.value })} /> <br />
-                        <label>Email:</label> <input type='email' value={userDat.email} placeholder={userDat.email} onChange={(e) => setUserDat({ ...userDat, email: e.target.value })} /> <br />
+                        <label>Name:</label> <input type='text' value={userDat.name} placeholder={userDat.name} required onChange={(e) => setUserDat({ ...userDat, name: e.target.value })} /> <br />
+                        <label>Email:</label> <input type='email' value={userDat.email} placeholder={userDat.email} required onChange={(e) => setUserDat({ ...userDat, email: e.target.value })} /> <br />
 
                         <button className="btn btn-secondary m-2" type="submit" >Done</button>
                         <button className="btn btn-secondary m-2" onClick={()=>setEdit(false)} >Cancel</button>

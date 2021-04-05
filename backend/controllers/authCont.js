@@ -45,24 +45,32 @@ module.exports.shronik_put = async (req,res) =>{
 	const newPass=req.body.npass;
 	const tok=req.body.tokk
 	const salt = await bcrypt.genSalt();
-			
+	const passpass=await bcrypt.hash(newPass, salt)	
 
 	User.findOne({resetToken: tok, expireToken: {$gt:Date.now()} })
 		.then(result => {
 		// console.log("Resultt", result);
+			if (!result)
+		return res.status(422).send("session expired")
 	
-		bcrypt.hash(newPass, 10).then(hashPassword => {
-      console.log("shronikkkkkkkkk",hashPassword, result);
-            result.password = hashPassword;
-            result.resetToken = undefined;
-            result.expireToken = undefined;
+			
+			console.log("hasss");
+			console.log("iddddd" ,result.id);
+			
+			
 
-            result.save().then((savedUser)=>{
-              res.send("Password Successfully updated")
-            })
-            .catch(err => console.log(err))
+			
+			User.updateOne({ _id: result.id }, { $set: { password: passpass, resetToken: undefined, expireToken: undefined } })
+				.then(resp => {
+					res.status(200).send("password updated");
+				}).catch(err => {
+				res.status(400).send("try again")
+			})
+					
+	
+			
     })
-	})
+	
 	.catch(err=>{console.log(err);
 		res.send(err)})
 

@@ -24,7 +24,7 @@ export default function ResetPage() {
 
     return (
         <div>
-            <input type="text" onChange={(e)=>{setNpass(e.target.value)}} placeholder="Enter New Password" /><br />
+            <input type="text" onChange={(e)=>{setNpass(e.target.value)}}  required placeholder="Enter New Password" /><br />
             <button onClick={()=>newpassword()}>Done</button>
         </div>
     )
